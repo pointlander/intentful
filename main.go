@@ -56,7 +56,7 @@ func Interface(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 func Search(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	r.ParseForm()
 	lang, word := r.Form["language"][0], r.Form["query"][0]
-	http.Redirect(w, r, fmt.Sprintf("/word-search/%s/%s", lang, word), 301)
+	http.Redirect(w, r, fmt.Sprintf("/word-search/%s/%s", lang, word), http.StatusMovedPermanently)
 }
 
 func main() {
