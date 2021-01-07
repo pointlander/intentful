@@ -10,6 +10,7 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 
+	"github.com/pointlander/calc"
 	"github.com/pointlander/dbnary"
 )
 
@@ -17,6 +18,7 @@ import (
 const Index = `<html>
   <head><title>Intentful</title></head>
   <body>
+    <h3>Dictionary</h3>
     <form action="/search" method="post">
       <select id="language" name="language">
         <option value="bul">Bulgarian</option>
@@ -43,6 +45,20 @@ const Index = `<html>
       <input type="text" id="query" name="query">
       <input type="submit" value="Submit">
     </form>
+    <h3>Calculate</h3>
+    <form action="/calculate" method="post">
+      <input type="text" id="expression" name="expression">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
+`
+
+// Result is the result page
+const Result = `<html>
+  <head><title>Result</title></head>
+  <body>
+    <b>%s</b>
   </body>
 </html>
 `
@@ -59,6 +75,25 @@ func Search(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	http.Redirect(w, r, fmt.Sprintf("/word-search/%s/%s", lang, word), http.StatusMovedPermanently)
 }
 
+// Calculate calculates an expression
+func Calculate(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	r.ParseForm()
+	expression := r.Form["expression"][0]
+	cal := &calc.Calculator{Buffer: expression}
+	cal.Init()
+	if err := cal.Parse(); err != nil {
+		fmt.Println(err)
+		return
+	}
+	result, html := cal.Eval(), ""
+	if result.Matrix != nil {
+		html = fmt.Sprintf(Result, result.Matrix.String())
+	} else {
+		html = fmt.Sprintf(Result, result.Expression.String())
+	}
+	w.Write([]byte(html))
+}
+
 func main() {
 	db := dbnary.OpenDB("dbnary.db", true)
 	defer db.Close()
@@ -66,6 +101,7 @@ func main() {
 	router := httprouter.New()
 	router.GET("/", Interface)
 	router.POST("/search", Search)
+	router.POST("/calculate", Calculate)
 	dbnary.Server(db, router)
 	server := http.Server{
 		Addr:    ":8080",
