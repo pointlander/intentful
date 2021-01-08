@@ -5,6 +5,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
 
@@ -68,11 +69,21 @@ func Interface(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Write([]byte(Index))
 }
 
+// Data is data for endpoints
+type Data struct {
+	DB *dbnary.DB
+}
+
 // Search redirects to the word search
-func Search(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func (d *Data) Search(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	r.ParseForm()
-	lang, word := r.Form["language"][0], r.Form["query"][0]
-	http.Redirect(w, r, fmt.Sprintf("/word-search/%s/%s", lang, word), http.StatusMovedPermanently)
+	lang, query := r.Form["language"][0], r.Form["query"][0]
+	word, err := d.DB.LookupWordForLanguage(query, lang)
+	if err != nil || (len(word.Relations) == 0 && len(word.Parts) == 0) {
+		http.Redirect(w, r, fmt.Sprintf("/word-search/%s/%s", lang, query), http.StatusMovedPermanently)
+		return
+	}
+	http.Redirect(w, r, fmt.Sprintf("/word/%s/%s", lang, query), http.StatusMovedPermanently)
 }
 
 // Calculate calculates an expression
@@ -94,17 +105,24 @@ func Calculate(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Write([]byte(html))
 }
 
+// Address is the address and port of the server
+var Address = flag.String("address", ":80", "the address and port of the server")
+
 func main() {
+	flag.Parse()
+
 	db := dbnary.OpenDB("dbnary.db", true)
 	defer db.Close()
-
+	data := Data{
+		DB: db,
+	}
 	router := httprouter.New()
 	router.GET("/", Interface)
-	router.POST("/search", Search)
+	router.POST("/search", data.Search)
 	router.POST("/calculate", Calculate)
 	dbnary.Server(db, router)
 	server := http.Server{
-		Addr:    ":8080",
+		Addr:    *Address,
 		Handler: router,
 	}
 	err := server.ListenAndServe()
