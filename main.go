@@ -13,12 +13,18 @@ import (
 
 	"github.com/pointlander/calc"
 	"github.com/pointlander/dbnary"
+	"github.com/pointlander/wikipedia"
 )
 
 // Index is the index page
 const Index = `<html>
   <head><title>Intentful</title></head>
   <body>
+	  <h3>Encyclopedia</h3>
+		<form action="/wiki/search" method="post">
+			<input type="text" id="query" name="query">
+			<input type="submit" value="Submit">
+		</form>
     <h3>Dictionary</h3>
     <form action="/search" method="post">
       <select id="language" name="language">
@@ -119,13 +125,21 @@ func main() {
 	router := httprouter.New()
 	router.GET("/", Interface)
 	router.POST("/search", data.Search)
-	router.POST("/calculate", Calculate)
 	dbnary.Server(db, router)
+
+	wikidb, err := wikipedia.Open(true)
+	if err != nil {
+		panic(err)
+	}
+	wikipedia.Server(wikidb, router)
+
+	router.POST("/calculate", Calculate)
+
 	server := http.Server{
 		Addr:    *Address,
 		Handler: router,
 	}
-	err := server.ListenAndServe()
+	err = server.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
