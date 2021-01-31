@@ -5,6 +5,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"fmt"
 	"net/http"
@@ -111,8 +112,16 @@ func Calculate(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Write([]byte(html))
 }
 
-// Address is the address and port of the server
-var Address = flag.String("address", ":80", "the address and port of the server")
+var (
+	// Address is the address and port of the server
+	Address = flag.String("address", ":80", "the address and port of the server")
+	// Production server is in production mode
+	Production = flag.Bool("production", false, "production mode")
+	// Certificate is the certificate
+	Certificate = flag.String("certificate", ".lego/certificates/intentful.us.crt", "the certificate")
+	// Key is the key
+	Key = flag.String("key", ".lego/certificates/intentful.us.key", "the key")
+)
 
 func main() {
 	flag.Parse()
@@ -134,6 +143,23 @@ func main() {
 	wikipedia.Server(wikidb, router)
 
 	router.POST("/calculate", Calculate)
+
+	if *Production {
+		cert, _ := tls.LoadX509KeyPair(*Certificate, *Key)
+		server := http.Server{
+			Addr:    ":443",
+			Handler: router,
+			TLSConfig: &tls.Config{
+				Certificates: []tls.Certificate{cert},
+			},
+		}
+		go func() {
+			err := server.ListenAndServeTLS("", "")
+			if err != nil {
+				panic(fmt.Errorf("httpsSrv.ListendAndServeTLS() failed with %s", err))
+			}
+		}()
+	}
 
 	server := http.Server{
 		Addr:    *Address,
