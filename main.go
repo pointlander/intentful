@@ -30,6 +30,7 @@ const Index = `<html>
     <form action="/search" method="post">
       <select id="language" name="language">
         <option value="bul">Bulgarian</option>
+        <option value="deu">German</option>
         <option value="ell">Greek</option>
         <option value="eng" selected>English</option>
         <option value="spa">Spanish</option>

@@ -63,6 +63,8 @@ github.com/pointlander/dbnary v0.0.0-20210107020647-b9273d9ba906 h1:klqzUMmHqqg3
 github.com/pointlander/dbnary v0.0.0-20210107020647-b9273d9ba906/go.mod h1:Khjs40gnf7+TYeL8TjfyOr097oq+0b0QmTMv0lhJKk8=
 github.com/pointlander/dbnary v0.0.0-20210109035247-ca47eb218d9d h1:xdcQVmWclIhuu8MMPyi8joMbl8DrenRyAnZtZmfznGw=
 github.com/pointlander/dbnary v0.0.0-20210109035247-ca47eb218d9d/go.mod h1:Khjs40gnf7+TYeL8TjfyOr097oq+0b0QmTMv0lhJKk8=
+github.com/pointlander/dbnary v0.0.0-20210201045939-581adf94578c h1:TAEYtCKD6r3hdg2oAsotofZdoOwnzT0EIQMVx5AMjX0=
+github.com/pointlander/dbnary v0.0.0-20210201045939-581adf94578c/go.mod h1:Khjs40gnf7+TYeL8TjfyOr097oq+0b0QmTMv0lhJKk8=
 github.com/pointlander/pagerank v0.0.0-20210118145028-e3beb2a10f3d h1:x5rTjYXRyiGVoouDAkqWWTaJ9poGufKHOGxc6Rrb16I=
 github.com/pointlander/pagerank v0.0.0-20210118145028-e3beb2a10f3d/go.mod h1:9UawvzpkRT8gwNLM8E8JdGnn6p1kHqEdV+P8TlDZibk=
 github.com/pointlander/wikipedia v0.0.0-20210130180810-bc6ef0d81730 h1:mcW2AH0PqQJ5LTQejFAgj8AZPd1g7hqid+ghm+9UDVI=
