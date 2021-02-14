@@ -69,6 +69,8 @@ github.com/pointlander/pagerank v0.0.0-20210118145028-e3beb2a10f3d h1:x5rTjYXRyi
 github.com/pointlander/pagerank v0.0.0-20210118145028-e3beb2a10f3d/go.mod h1:9UawvzpkRT8gwNLM8E8JdGnn6p1kHqEdV+P8TlDZibk=
 github.com/pointlander/wikipedia v0.0.0-20210130180810-bc6ef0d81730 h1:mcW2AH0PqQJ5LTQejFAgj8AZPd1g7hqid+ghm+9UDVI=
 github.com/pointlander/wikipedia v0.0.0-20210130180810-bc6ef0d81730/go.mod h1:1gFxwNENDc8CmYnXTr6quV8TtnLFaT6Ydk/ZlyptlWo=
+github.com/pointlander/wikipedia v0.0.0-20210212041651-a0551a006f7d h1:cLaQCN5w88UWeSHC7MamYtxaL6Ua50rLH58e0VewI/8=
+github.com/pointlander/wikipedia v0.0.0-20210212041651-a0551a006f7d/go.mod h1:1gFxwNENDc8CmYnXTr6quV8TtnLFaT6Ydk/ZlyptlWo=
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
 github.com/texttheater/golang-levenshtein/levenshtein v0.0.0-20200805054039-cae8b0eaed6c h1:HelZ2kAFadG0La9d+4htN4HzQ68Bm2iM9qKMSMES6xg=
 github.com/texttheater/golang-levenshtein/levenshtein v0.0.0-20200805054039-cae8b0eaed6c/go.mod h1:JlzghshsemAMDGZLytTFY8C1JQxQPhnatWqNwUXjggo=

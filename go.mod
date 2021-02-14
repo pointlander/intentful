@@ -9,5 +9,5 @@ require (
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/pointlander/calc v0.0.0-20210107030848-87f40cc5ef60
 	github.com/pointlander/dbnary v0.0.0-20210201045939-581adf94578c
-	github.com/pointlander/wikipedia v0.0.0-20210130180810-bc6ef0d81730
+	github.com/pointlander/wikipedia v0.0.0-20210212041651-a0551a006f7d
 )
