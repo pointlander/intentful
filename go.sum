@@ -55,6 +55,8 @@ github.com/pointlander/calc v0.0.0-20210105064717-1ab3e3222275 h1:TYXcKyiAq9wf54
 github.com/pointlander/calc v0.0.0-20210105064717-1ab3e3222275/go.mod h1:GagEaPA/euoWVMj+LiTrHy3ZwuA+Bl4lar97uVGJ2GY=
 github.com/pointlander/calc v0.0.0-20210107030848-87f40cc5ef60 h1:k7NyoulAS8n2LliZAug620R22gkcQJKDA3tD6qf7R2k=
 github.com/pointlander/calc v0.0.0-20210107030848-87f40cc5ef60/go.mod h1:GagEaPA/euoWVMj+LiTrHy3ZwuA+Bl4lar97uVGJ2GY=
+github.com/pointlander/calc v0.0.0-20210302020256-9c599374c271 h1:PUEAVxDPimUJkBYVjkJwdIQ84Xu8yCkxRlMfZFWrGCQ=
+github.com/pointlander/calc v0.0.0-20210302020256-9c599374c271/go.mod h1:GagEaPA/euoWVMj+LiTrHy3ZwuA+Bl4lar97uVGJ2GY=
 github.com/pointlander/compress v1.1.1-0.20190518213731-ff44bd196cc3 h1:hUmXhbljNFtrH5hzV9kiRoddZ5nfPTq3K0Sb2hYYiqE=
 github.com/pointlander/compress v1.1.1-0.20190518213731-ff44bd196cc3/go.mod h1:q5NXNGzqj5uPnVuhGkZfmgHqNUhf15VLi6L9kW0VEc0=
 github.com/pointlander/compress v1.1.1-0.20210112171536-f1390ed9e1af h1:gB9iuFZOD8OCJRHVT8mv9zl0Omrg2A1kCVxTrANWWPo=
